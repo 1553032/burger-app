@@ -125,7 +125,7 @@ class ContactData extends Component {
             formData[formElementIdentifer] = this.state.orderForm[formElementIdentifer].value;
         }
         const order = {
-            ingredients: this.ingredients,
+            ingredients: this.props.ingredients,
             price: this.props.price,
             orderData: formData
         }
@@ -185,7 +185,7 @@ class ContactData extends Component {
                 </Button>
             </form>
         );
-        if (this.state.loading) {
+        if (this.props.loading) {
             form = <Spinner />
         }
         return (
@@ -199,14 +199,15 @@ class ContactData extends Component {
 
 const mapStateToProps = state => {
     return {
-        ingredients: state.ingredients,
-        price: state.price
+        ingredients: state.burgerBuilder.ingredients,
+        price: state.burgerBuilder.price,
+        loading: state.order.loading
     }
 }
 
 const mapDispatchToProps = dispatch => {
-    return{
-        onOrderBurger: (orderData) => dispatch(actions.purchaseBurgerStart(orderData))
+    return {
+        onOrderBurger: (orderData) => dispatch(actions.purchaseBurger(orderData))
     }
 }
 
