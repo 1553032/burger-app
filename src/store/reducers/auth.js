@@ -4,7 +4,8 @@ const initialState = {
     token: null,
     userId: null,
     error: null,
-    loading: false
+    loading: false,
+    path: '/'
 };
 
 const reducer = (state = initialState, action) => {
@@ -34,6 +35,11 @@ const reducer = (state = initialState, action) => {
                 token: null,
                 userId: null
             };
+        case actionTypes.SET_PATH_REDIRECT:
+            return {
+                ...state,
+                path: action.path
+            }
         default:
             return state;
     }
